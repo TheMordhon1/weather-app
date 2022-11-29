@@ -19,8 +19,8 @@ export default function Home() {
 		axios.get(url)
 			.then((res) => {
 				setWeather(res.data);
-				// console.log(res.data);
 				setLoading(false)
+				console.log(res.data.weather)
 			}).catch(err => console.log(err))
 		setCity('');
 	}
@@ -59,7 +59,9 @@ export default function Home() {
 			</div>
 			{
 				loading
-					? <Spinner /> : weather && <Weather data={weather} />
+					? <Spinner />
+
+					: weather.main && <Weather data={weather} />
 			}
 		</>
 	)

@@ -24,17 +24,17 @@ const Weather = (props: weatherProps) => {
 
 			<div className='bg-black/50 relative p-8 rounded-md'>
 				<p className='text-wxl text-center pb-6'>Weather in {data.name}</p>
-				<div className='flex justify-center gap-5'>
-					<div className='text-center'>
-						<p>{data.main.humidity}%</p>
-						<p>Feels Like</p>
-					</div>
-					<div className='text-center'>
-						<p>{data.main.feels_like.toFixed(0)}&#176;</p>
+				<div className='flex justify-between text-center'>
+					<div>
+						<p className='text-2xl font-bold'>{data.main.humidity}%</p>
 						<p>Humidity</p>
 					</div>
-					<div className='text-center'>
-						<p>{data.wind.speed.toFixed(0)}MPH</p>
+					<div>
+						<p className='text-2xl font-bold'>{data.main.feels_like.toFixed(0)}&#176;</p>
+						<p>Feels Like</p>
+					</div>
+					<div>
+						<p className='text-2xl font-bold'>{data.wind.speed.toFixed(0)}MPH</p>
 						<p>Winds</p>
 					</div>
 				</div>
