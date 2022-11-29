@@ -9,8 +9,9 @@ import Spinner from '../components/Spinner'
 
 export default function Home() {
 	const [city, setCity] = useState<string>('')
-	const [weather, setWeather] = useState<any>({})
-	const [loading, setLoading] = useState<boolean>(true)
+	const [weather, setWeather] = useState<Object>({})
+	const [loading, setLoading] = useState<boolean>(false)
+	const [show, setShow] = useState<boolean>(false)
 	const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.NEXT_PUBLIC_WEATHER_KEY}`
 
 	const fetchWeather = (e: any) => {
@@ -20,6 +21,7 @@ export default function Home() {
 			.then((res) => {
 				setWeather(res.data);
 				setLoading(false)
+				setShow(true)
 				console.log(res.data.weather)
 			}).catch(err => console.log(err))
 		setCity('');
@@ -44,11 +46,11 @@ export default function Home() {
 				<form
 					onSubmit={fetchWeather}
 					className='flex justify-between items-center w-full m-auto p-3 bg-transparent border border-gray-300 text-white rounded-2xl'>
-					<div>
+					<div className='flex-1'>
 						<input
 							type="text"
 							onChange={(e) => setCity(e.target.value)}
-							className='bg-transparent border-none text-white focus:outline-none text-2xl'
+							className='bg-transparent border-none text-white focus:outline-none text-2xl w-full'
 							placeholder='Search City'
 						/>
 					</div>
@@ -61,7 +63,7 @@ export default function Home() {
 				loading
 					? <Spinner />
 
-					: weather && <Weather data={weather} />
+					: show && <Weather data={weather} />
 			}
 		</>
 	)
