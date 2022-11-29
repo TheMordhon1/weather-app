@@ -9,8 +9,8 @@ import Spinner from '../components/Spinner'
 
 export default function Home() {
 	const [city, setCity] = useState<string>('')
-	const [weather, setWeather] = useState<Object>({})
-	const [loading, setLoading] = useState<boolean>(false)
+	const [weather, setWeather] = useState<any>({})
+	const [loading, setLoading] = useState<boolean>(true)
 	const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${process.env.NEXT_PUBLIC_WEATHER_KEY}`
 
 	const fetchWeather = (e: any) => {
@@ -61,7 +61,7 @@ export default function Home() {
 				loading
 					? <Spinner />
 
-					: weather.main && <Weather data={weather} />
+					: weather && <Weather data={weather} />
 			}
 		</>
 	)
